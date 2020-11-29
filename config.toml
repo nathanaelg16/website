@@ -37,12 +37,12 @@ enableEmoji = true
     url = "/blog/"
     weight = 10
 
-# [[menu.main]]
-#    identifier = "twitter"
-    # name = "Twitter"
-#    pre = "<i class='fab fa-twitter fa-lg'></i>"
-#    url = "https://twitter.com/nathanaelg16"
-#    weight = 20
+[[menu.main]]
+    identifier = "instagram"
+    # name = "Instagram"
+    pre = "<i class='fab fa-instagram fa-lg'></i>"
+    url = "https://instagr.am/nathanaelg16"
+    weight = 20
 
 [[menu.main]]
     identifier = "github"
