@@ -58,6 +58,13 @@ enableEmoji = true
     url = "mailto:nathanaelg16@gmail.com"
     weight = 40
 
+[[menu.main]]
+    identifier = "pgp"
+    # name = "PGP Key"
+    pre = "<i class='fas fa-key'></i>"
+    url = "/pgp"
+    weight = 50
+
 [privacy]
   [privacy.disqus]
     disable = true
