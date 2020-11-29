@@ -3,6 +3,7 @@ title: "PGP Public Key"
 date: 2020-11-29T00:25:24-05:00
 draft: false
 images: []
+tags: ["PGP"]
 ---
 
 -----BEGIN PGP PUBLIC KEY BLOCK-----
