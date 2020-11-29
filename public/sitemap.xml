@@ -3,15 +3,26 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://nathanaelg.com/categories/</loc>
+    <loc>https://nathanaelgutierrez.com/blog/</loc>
+    <lastmod>2020-11-28T18:07:20-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://nathanaelg.com/</loc>
+    <loc>https://nathanaelgutierrez.com/blog/science-education/</loc>
+    <lastmod>2020-11-28T18:07:20-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://nathanaelg.com/tags/</loc>
+    <loc>https://nathanaelgutierrez.com/</loc>
+    <lastmod>2020-11-28T18:07:20-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://nathanaelgutierrez.com/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nathanaelgutierrez.com/tags/</loc>
   </url>
   
 </urlset>

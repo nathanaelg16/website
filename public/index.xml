@@ -2,8 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Nathanael Gutierrez</title>
-    <link>https://nathanaelg.com/</link>
+    <link>https://nathanaelgutierrez.com/</link>
     <description>Recent content on Nathanael Gutierrez</description>
-    <generator>Hugo -- gohugo.io</generator><atom:link href="https://nathanaelg.com/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 28 Nov 2020 18:07:20 -0500</lastBuildDate><atom:link href="https://nathanaelgutierrez.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Has science education failed us?</title>
+      <link>https://nathanaelgutierrez.com/blog/science-education/</link>
+      <pubDate>Sat, 28 Nov 2020 18:07:20 -0500</pubDate>
+      
+      <guid>https://nathanaelgutierrez.com/blog/science-education/</guid>
+      <description>Not everyone likes science or is as devoted to it as I am, that much is true, but is that a valid excuse for not knowing the basic properties of our solar system? Are basic facts like &amp;ldquo;the Sun is a star&amp;rdquo;, &amp;ldquo;the Earth is a planet&amp;rdquo;, and &amp;ldquo;the Moon is a satellite&amp;rdquo; not important in our society? I can understand some confusion with whether Pluto is a planet or not.</description>
+    </item>
+    
   </channel>
 </rss>
