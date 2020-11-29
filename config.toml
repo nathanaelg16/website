@@ -1,4 +1,4 @@
-baseurl = "https://nathanaelgutierrez.com/"
+baseurl = "https://nathanaelgutierrez.com"
 title = "Nathanael Gutierrez"
 theme = "pulp"
 canonifyurls = true
