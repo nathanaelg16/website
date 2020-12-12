@@ -1,7 +1,7 @@
 ---
 title: "Has science education failed us?"
 date: 2020-11-28T18:07:20-05:00
-draft: false
+draft: true
 images: []
 tags: ["education", "science"]
 ---
