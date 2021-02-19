@@ -7,7 +7,6 @@ tags: ["PGP"]
 ---
 
 ```
-<!-- language: lang-none -->
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
 mQINBGAU4IABEAC7RCKmFQgwQK8jbMchYvgzwAIQVu3kvwuJRODyptuKMCHu6skw
