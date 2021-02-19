@@ -1,10 +1,13 @@
 ---
 title: "PGP Public Key"
-date: 2020-11-29T00:25:24-05:00
+date: 2021-02-18T00:25:24-05:00
 draft: false
 images: []
 tags: ["PGP"]
 ---
+
+```
+<!-- language: lang-none -->
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
 mQINBGAU4IABEAC7RCKmFQgwQK8jbMchYvgzwAIQVu3kvwuJRODyptuKMCHu6skw
@@ -57,3 +60,4 @@ PFRv9EsuxWVXSxUZ/EWnHENk0Eq99gUUckVyqDI9rPFXj6LGjW4Ggu5+MdRGJSH6
 K4mIatqVygE6f6Z/z3AawGJe8Do=
 =zdvC
 -----END PGP PUBLIC KEY BLOCK-----
+```
