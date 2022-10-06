@@ -86,3 +86,8 @@ ignoreErrors = ["error-remote-getjson"]
   [module.hugoVersion]
     extended = true
     min = "0.85.0"
+
+[markup]
+    [markup.goldmark]
+        [markup.goldmark.renderer]
+            unsafe = true
