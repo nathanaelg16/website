@@ -73,13 +73,13 @@ ignoreErrors = ["error-remote-getjson"]
   folderName = "Links"
   # Note: ["ACTIVITY", "URL or PATH TO YOUR MARKDOWN FILE"]
   files = [ 
-    ["Research", "/research.md"],
+    ["Research", "/research"],
     ["CV", "/cv.pdf"],
-    ["Blog", "/blog"],
+    #["Blog", "/blog"],
     ["Github", "https://github.com/nathanaelg16"],
     ["LinkedIn", "https://linkedin.com/nathanaelg16"],
     ["Email", "mailto:me@nathanaelg.com"],
-    ["PGP Key", "/pgp.md"],
+    ["PGP Key", "/nathanael_gutierrez_public_key.asc"],
   ]
 
 [module]
