@@ -1,3 +1,7 @@
 :root {
   --max-width: 1100px;
 }
+
+body {
+  background: var(--joy-palette-warning-50);
+}
