@@ -124,7 +124,7 @@ function Content() {
 
 export default function Home() {
   return <Box sx={{display: 'flex', width: '100svw', height: '100svh', userSelect: 'none'}}>
-    <Stack direction='row' justifyContent='space-between' sx={{mx: 'auto', border: '2px solid var(--joy-palette-primary-900)', background: 'var(--joy-palette-primary-50)', borderRadius: 20, width: 0.75, height: 0.60, my: 10, px: 2}}>
+    <Stack direction='row' justifyContent='space-between' sx={{mx: 'auto', border: '2px solid var(--joy-palette-primary-900)', background: 'var(--joy-palette-primary-50)', borderRadius: 20, width: 0.75, height: 0.80, my: 10, px: 2, maxHeight: '600px'}}>
       <PhotoCard />
       <Content />
     </Stack>
