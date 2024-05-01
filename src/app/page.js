@@ -24,7 +24,7 @@ import WorkIcon from '@mui/icons-material/Work';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import {useCallback, useRef, useState} from "react";
 import {KeyboardArrowRight} from "@mui/icons-material";
-import {Fira_Code} from "@next/font/google";
+import {Fira_Code} from "next/font/google";
 
 const FiraCode = Fira_Code({subsets: ['latin'], weight: ['300', '500', '700']})
 
