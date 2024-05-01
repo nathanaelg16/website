@@ -1,15 +1,15 @@
 'use client'
 
 import Image from "next/image";
-import myImage from "./pic.png"
+import myImage from "../../public/assets/pic.png"
 import {
   AspectRatio,
   Box,
-  IconButton,
+  IconButton, Input,
   List, ListDivider,
   ListItem, ListItemButton, ListItemContent, ListItemDecorator,
   Snackbar,
-  Stack,
+  Stack, Textarea,
   Typography
 } from "@mui/joy";
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -17,12 +17,16 @@ import EmailIcon from '@mui/icons-material/Email';
 import KeyIcon from '@mui/icons-material/Key';
 import HomeIcon from '@mui/icons-material/Home';
 import LockPersonIcon from '@mui/icons-material/LockPerson';
+import DescriptionIcon from '@mui/icons-material/Description';
 import BookIcon from '@mui/icons-material/Book';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import WorkIcon from '@mui/icons-material/Work';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import {useState} from "react";
+import {useCallback, useRef, useState} from "react";
 import {KeyboardArrowRight} from "@mui/icons-material";
+import {Fira_Code} from "@next/font/google";
+
+const FiraCode = Fira_Code({subsets: ['latin'], weight: ['300', '500', '700']})
 
 function PhotoCard() {
   return <Stack useFlexGap direction='column' sx={{my: 'auto', width: 0.30, height: '100%', flex: '0 1 auto', py: 1}} spacing={2}>
@@ -70,23 +74,49 @@ function Link({title, startDecorator, endDecorator, onClick, disabled = false}) 
 }
 
 function Links() {
-  return <Stack sx={{py: 2}} direction='row' spacing={5} justifyContent='space-between'>
+  return <Stack sx={{py: 2}} direction='row' spacing={5} justifyContent='space-between' alignItems='start'>
     <List size='lg' variant='outlined' color='neutral' sx={{borderRadius: 10, '--List-gap': '5px'}}>
       <Link title='Experience' startDecorator={<WorkIcon />} />
       <ListDivider/>
       <Link title='Projects' startDecorator={<AssignmentIcon />} />
+      <ListDivider/>
+      <Link title='Publications' startDecorator={<DescriptionIcon />} />
     </List>
     <List size='lg' variant='outlined' color='neutral' sx={{borderRadius: 10, '--List-gap': '5px'}}>
       <Link title='Blog' startDecorator={<BookIcon />} disabled={true}/>
       <ListDivider/>
-      <Link title='PGP Key' startDecorator={<KeyIcon />} onClick={() => window.location.href = '/nathanael-gutierrez.asc'}/>
+      <Link title='PGP Key' startDecorator={<KeyIcon />} onClick={() => window.location.href = '/assets/nathanael-gutierrez.asc'}/>
     </List>
+  </Stack>
+}
+
+function Terminal() {
+  const [command, setCommand] = useState('')
+  const [response, setResponse] = useState('')
+
+  const focus = useCallback(() => {
+    const inputField = document.getElementById('terminalInput')
+    if (inputField !== null) inputField.focus()
+  }, [])
+
+  const processCommand = () => {
+    setResponse(`${command}: command not found`)
+    setCommand('')
+  }
+
+  return <Stack sx={{height: 1, background: 'var(--joy-palette-primary-900)', border: '2px solid black', '&:focus-within:focus:active': {outline: 'none'}, borderRadius: 10}}>
+    <Input spellCheck={false} value={command} onKeyDown={(e) => {
+      if (e.key === 'Enter') processCommand()
+    }} onChange={(e) => setCommand(e.target.value)} id='terminalInput' autoFocus className={FiraCode.className} sx={{color: 'white', background: 'transparent', border: 'none', '&::before': {display: 'none'}, '&:focus-within': {outline: 'none'}}}
+           startDecorator={<Typography onClick={focus} className={FiraCode.className} sx={{color: 'white'}}>root@nathanaelg.com:~#</Typography>} />
+    <Textarea spellCheck={false} className={FiraCode.className} value={response} onFocus={focus} sx={{color: 'white', background: 'var(--joy-palette-primary-900)', border: 'none', height: 1, '&::before': {display: 'none'}, '&:focus-within': {outline: 'none'}, borderTop: '1px solid white', borderRadius: 0}} />
   </Stack>
 }
 
 function Content() {
   return <Stack sx={{height: 1, flex: '1', px: 7, pt: 2, pr: 4}}>
     <Links />
+    <Terminal />
     <Socials />
   </Stack>
 }
