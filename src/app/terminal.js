@@ -22,8 +22,8 @@ const fileSystem = [new Node('music', 'dir', []), new Node('recipes', 'dir', [
     <br/>
     <p>### Favorite YouTube Videos</p>
     <List className={`${FiraCode.className} ${styles.list}`} component="ol" marker="decimal">
-        <ListItem>you can't watch this without smiling <a href='/assets/video.mp4'>(https://www.youtube.com/watch?v=Bp4wsgVYfjM)</a></ListItem>
-        <ListItem>when you can't afford a choir but have a VILLAGE <a href='https://www.youtube.com/watch?v=xTzmxNgPnS8'>(https://www.youtube.com/watch?v=xTzmxNgPnS8)</a></ListItem>
+        <ListItem>you can&apos;t watch this without smiling <a href='/assets/video.mp4'>(https://www.youtube.com/watch?v=Bp4wsgVYfjM)</a></ListItem>
+        <ListItem>when you can&apos;t afford a choir but have a VILLAGE <a href='https://www.youtube.com/watch?v=xTzmxNgPnS8'>(https://www.youtube.com/watch?v=xTzmxNgPnS8)</a></ListItem>
     </List>
     <p>### Interesting Wikipedia Articles</p>
     <List className={`${FiraCode.className} ${styles.list}`} component="ol" marker="decimal">
