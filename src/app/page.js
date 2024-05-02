@@ -25,7 +25,7 @@ import {KeyboardArrowRight} from "@mui/icons-material";
 import Terminal from "@/app/terminal";
 
 function PhotoCard() {
-  return <Stack useFlexGap direction='column' sx={{my: 'auto', width: 0.30, height: '100%', flex: '0 1 auto', py: 1}} spacing={2}>
+  return <Stack useFlexGap direction='column' sx={{my: 'auto', width: 0.30, height: '100%', flex: '0 0 auto', py: 1}} spacing={2}>
     <AspectRatio flex ratio="16/9" objectFit="cover" sx={{width: 1, height: 1, borderRadius: 5, flexBasis: 200}}>
       <Image alt='Nathanael Gutierrez' src={myImage} placeholder="blur" />
     </AspectRatio>
@@ -87,7 +87,7 @@ function Links(props) {
 }
 
 function Content() {
-  return <Stack sx={{height: 1, flex: '1', px: 7, pt: 2, pr: 4, width: 1}}>
+  return <Stack sx={{height: 1, flex: '1', px: 7, pt: 2, pr: 4, width: 'inherit', minWidth: 0}}>
     <Links flex='0' />
     <Terminal flex='1'/>
     <Socials flex='0' />
