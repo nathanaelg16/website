@@ -1,3 +1,11 @@
+.terminal {
+    visibility: visible;
+}
+
+.terminal.hidden {
+    visibility: hidden;
+}
+
 .response {
     color: white;
     background: var(--joy-palette-primary-900);

@@ -4,6 +4,7 @@ import {Fira_Code} from "next/font/google";
 import styles from './terminal.module.css'
 
 const FiraCode = Fira_Code({subsets: ['latin'], weight: ['300', '500', '700']})
+const {List : ImmutableList} = require('immutable')
 
 class Node {
     constructor(name, type, content, hidden = false) {
@@ -14,6 +15,8 @@ class Node {
     }
 }
 
+const Link = ({title, url}) => <ListItem>{title} <a href={url}>[Link]</a></ListItem>
+
 const fileSystem = [new Node('music', 'dir', []), new Node('recipes', 'dir', [
 
 ]), new Node('.secrets', 'dir', [], true), new Node('bookmarks.txt', 'file', <>
@@ -22,19 +25,22 @@ const fileSystem = [new Node('music', 'dir', []), new Node('recipes', 'dir', [
     <br/>
     <p>### Favorite YouTube Videos</p>
     <List className={`${FiraCode.className} ${styles.list}`} component="ol" marker="decimal">
-        <ListItem>you can&apos;t watch this without smiling <a href='/assets/video.mp4'>(https://www.youtube.com/watch?v=Bp4wsgVYfjM)</a></ListItem>
-        <ListItem>when you can&apos;t afford a choir but have a VILLAGE <a href='https://www.youtube.com/watch?v=xTzmxNgPnS8'>(https://www.youtube.com/watch?v=xTzmxNgPnS8)</a></ListItem>
+        <Link title="you can't watch this without smiling" url='/assets/video.mp4'/>
+        <Link title="when you can't afford a choir but have a VILLAGE" url='https://www.youtube.com/watch?v=xTzmxNgPnS8'/>
     </List>
-    <p>### Interesting Wikipedia Articles</p>
+    <p>### Developer Resources</p>
     <List className={`${FiraCode.className} ${styles.list}`} component="ol" marker="decimal">
-        <ListItem>Asherah <a href='https://en.wikipedia.org/wiki/Asherah'>(https://en.wikipedia.org/wiki/Asherah)</a></ListItem>
+        <Link title='Absolute Minimum Every SWE Should Know About Unicode and Character Sets' url='https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/'/>
+        <Link title='Awesome Public Datasets' url='https://github.com/awesomedata/awesome-public-datasets'/>
+        <Link title='Free Programming Books' url='https://github.com/EbookFoundation/free-programming-books'/>
     </List>
 </>)]
 
 export default function Terminal(props) {
+    const [hidden, setHidden] = useState(false)
     const [command, setCommand] = useState('')
     const [response, setResponse] = useState('')
-    const path = useRef([])
+    const [path, setPath] = useState(ImmutableList())
     const aliases = useRef({})
     const variables = useRef({
         '$SHELL': '/usr/bin/zsh'
@@ -47,9 +53,9 @@ export default function Terminal(props) {
 
     const getPathNodes = (includeHidden = false) => {
         let nodes = fileSystem
-        if (path.current.length > 0) {
-            for (let i = 0; i < path.current.length; i++) {
-                nodes = nodes.filter((node) => node.name === path.current[i])
+        if (path.size > 0) {
+            for (let i = 0; i < path.size; i++) {
+                nodes = nodes.filter((node) => node.name === path.get(i))
                     .flatMap((node) => node.content)
             }
         }
@@ -160,6 +166,28 @@ export default function Terminal(props) {
         return false
     }
 
+    const cd = (commands) => {
+        if (commands.length > 2) return `invalid arguments \`${commands.slice(2).join(' ')}\``
+
+        if (commands.length === 1 || commands[1] === '~') setPath(new ImmutableList())
+        else if (commands[1] === '..') setPath(path.pop())
+        else {
+            const node = getPathNodes(true).find((node) => node.name === commands[1])
+            if (!node) return `invalid directory \`${commands[1]}\``
+            if (node.type === 'file') return `\`${commands[1]}\` is a file`
+
+            setPath(path.push(node.name))
+        }
+
+        setResponse('')
+        return false
+    }
+
+    const exit = () => {
+        setResponse('Goodbye!')
+        setTimeout(() => setHidden(true), 2000)
+    }
+
     const processCommand = (command) => {
         let commands = command.split(' ')
         commands = commands.map((cmd) => {
@@ -197,6 +225,12 @@ export default function Terminal(props) {
             case 'export':
                 error = exportCmd(commands)
                 break
+            case 'cd':
+                error = cd(commands)
+                break
+            case 'exit':
+                exit()
+                break
             default:
                 if (commands[0] in aliases.current) {
                     commands[0] = aliases.current[commands[0]]
@@ -220,7 +254,7 @@ export default function Terminal(props) {
         }
     }
 
-    return <Stack {...props} sx={{background: 'var(--joy-palette-primary-900)', border: '2px solid black', '&:focus-within:focus:active': {outline: 'none'}, borderRadius: 10, overflowWrap: 'break-word', overflowY: 'hidden'}}>
+    return <Stack {...props} className={`${styles.terminal} ${hidden ? styles.hidden : ''}`} sx={{background: 'var(--joy-palette-primary-900)', border: '2px solid black', '&:focus-within:focus:active': {outline: 'none'}, borderRadius: 10, overflowWrap: 'break-word', overflowY: 'hidden'}}>
         <Input spellCheck={false} value={command} onKeyDown={(e) => {
             if (e.key === 'Enter') processCommand(command)
             else if (e.key === 'Tab') {
@@ -228,7 +262,7 @@ export default function Terminal(props) {
                 e.preventDefault()
             }
         }} onChange={(e) => setCommand(e.target.value)} id='terminalInput' autoFocus className={FiraCode.className} sx={{color: 'white', background: 'transparent', border: 'none', '&::before': {display: 'none'}, '&:focus-within': {outline: 'none'}}}
-               startDecorator={<Typography onClick={focus} className={FiraCode.className} sx={{color: 'white'}}>root@nathanaelg.com:~#</Typography>} />
+               startDecorator={<Typography onClick={focus} className={FiraCode.className} sx={{color: 'white'}}>root@nathanaelg.com:~{path.size === 0 ? '' : '/'}{path.join('/')}#</Typography>} />
         <Box className={`${FiraCode.className} ${styles.response}`} onClick={focus} sx={{px: 1.5, py: 1}}>
             {response}
         </Box>
