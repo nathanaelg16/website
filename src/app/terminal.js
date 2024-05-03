@@ -17,8 +17,69 @@ class Node {
 
 const Link = ({title, url}) => <ListItem>{title} <a href={url}>[Link]</a></ListItem>
 
-const fileSystem = [new Node('music', 'dir', []), new Node('recipes', 'dir', [
+const IngredientsList = ({children}) => {
+    return <List className={`${FiraCode.className} ${styles.list}`} component="ul" marker='disc'>
+        {children}
+    </List>
+}
 
+const Ingredient = ({quantity, description}) => {
+    return <ListItem><Typography className={`${FiraCode.className}`} sx={{color: 'white'}}><Typography fontWeight='700'>{quantity}</Typography>{quantity ? ' ' : ''}{description}</Typography></ListItem>
+}
+
+const fileSystem = [new Node('music', 'dir', []), new Node('recipes', 'dir', [
+    new Node('Pico-de-Avocado.txt', 'file', <>
+        <p># Pico de Avocado</p>
+        <p>## Adapted from <a href='https://www.tasteofhome.com/recipes/pico-de-gallo/'>Pico de Gallo [Taste of Home]</a></p>
+        <br/>
+        <p>### Ingredients</p>
+        <IngredientsList>
+            <Ingredient quantity='6' description='plum tomatoes, chopped'/>
+            <Ingredient quantity='1' description='medium onion, chopped'/>
+            <Ingredient quantity='1/2 cup' description='fresh cilantro, chopped'/>
+            <Ingredient quantity='1 to 2' description='jalape&#241;o pepper(s), seeded and finely chopped'/>
+            <Ingredient quantity='3 tbsp' description='lime juice (about 1 - 1.5 lime)'/>
+            <Ingredient quantity='1 tbsp' description='cilantro stems, finely chopped'/>
+            <Ingredient quantity='1' description='garlic clove, minced'/>
+            <Ingredient quantity='1' description='large avocado, diced'/>
+            <Ingredient quantity='3/4 tsp' description='salt'/>
+        </IngredientsList>
+        <br/>
+        <p>### Directions</p>
+        <List className={`${FiraCode.className} ${styles.list}`} component="ol" marker="decimal">
+            <ListItem>In a medium bowl, combine all ingredients. Cover and refrigerate for 1-2 hours before serving.</ListItem>
+        </List>
+    </>),
+    new Node('Greek-Quinoa-Salad.txt', 'file', <>
+        <p># Greek Quinoa Salad</p>
+        <p>## Source: <a href='https://www.foodnetwork.com/recipes/bobby-flay/greek-quinoa-salad-recipe-2109742'>[Food Network]</a></p>
+        <br/>
+        <p>### Ingredients</p>
+        <IngredientsList>
+            <Ingredient quantity='3 tbsp' description='freshly squeezed lemon juice'/>
+            <Ingredient quantity='1 tbsp' description='red wine vinegar'/>
+            <Ingredient quantity='1/4 tsp' description='dried oregano'/>
+            <Ingredient quantity='1 clove' description='garlic, finely chopped and smashed to a paste'/>
+            <Ingredient quantity='1/4 cup' description='extra virgin olive oil'/>
+            <Ingredient quantity='1 cup' description='quinoa'/>
+            <Ingredient quantity='2 cups' description='red and yellow grape tomatoes, halved'/>
+            <Ingredient quantity='1 cup' description='pitted kalamata olives'/>
+            <Ingredient quantity='2' description='green onions (green and pale green part), thinly sliced'/>
+            <Ingredient quantity='2' description='pickled cherry peppers, diced'/>
+            <Ingredient quantity='1' description='small red onion, halved and thinly sliced'/>
+            <Ingredient quantity='1/2' description='English cucumber, cut into small dice'/>
+            <Ingredient description='Kosher salt and ground black pepper, to taste'/>
+            <Ingredient description='Feta, for sprinkling'/>
+        </IngredientsList>
+        <br/>
+        <p>### Directions</p>
+        <List className={`${FiraCode.className} ${styles.list}`} component="ol" marker="decimal">
+            <ListItem>Whisk together the lemon juice, vinegar, oregano, garlic and some salt and pepper in a small bowl. Slowly whisk in the oil until emulsified. Let sit at room temperature while you prepare the salad to allow the flavors to meld.</ListItem>
+            <ListItem>Rinse the quinoa in a strainer until the water runs clear. Combine the quinoa, 2 cups water, 1 tsp salt and 1/4 tsp pepper in a small saucepan, bring to a boil and cook until the water is absorbed and the quinoa is tender, about 15 minutes.</ListItem>
+            <ListItem>Transfer to a bowl, fluff with a fork and let sit for 5 minutes to cool slightly. Add the tomatoes, olives, green onions, cherry peppers, red onions, cucumbers and dressing and toss to coat. Cover and refrigerate for at least 1 hour and up to 8 hours before serving. The longer it sits the better the flavor.</ListItem>
+            <ListItem> Just before serving, transfer to a platter and sprinkle feta on top.</ListItem>
+        </List>
+    </>)
 ]), new Node('.secrets', 'dir', [], true), new Node('bookmarks.txt', 'file', <>
     <p># Bookmarks</p>
     <p>## Last updated: May 01, 2024</p>
