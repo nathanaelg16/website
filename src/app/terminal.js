@@ -27,7 +27,29 @@ const Ingredient = ({quantity, description}) => {
     return <ListItem><Typography className={`${FiraCode.className}`} sx={{color: 'white'}}><Typography fontWeight='700'>{quantity}</Typography>{quantity ? ' ' : ''}{description}</Typography></ListItem>
 }
 
-const fileSystem = [new Node('music', 'dir', []), new Node('recipes', 'dir', [
+const fileSystem = [new Node('files', 'dir', [
+    new Node('resume.pdf', 'file', <iframe src='/assets/resume.pdf' style={{width: '100%', height: '100%'}}></iframe>),
+    new Node('reading-list.txt', 'file', <>
+        <p># Currently Reading</p>
+        <List className={`${FiraCode.className} ${styles.list}`} component="ol" marker="decimal">
+            <Link title='Drown by Junot Diaz' url='https://a.co/d/04hzq1M'/>
+            <Link title='The Prince and the Pauper by Mark Twain (Mandarin edition)' url='https://a.co/d/grYhpua'/>
+        </List>
+        <br/>
+        <p># Want to Read</p>
+        <List className={`${FiraCode.className} ${styles.list}`} component="ol" marker="decimal">
+            <Link title='The Brief Wondrous Life of Oscar Wao by Junot Diaz' url='https://a.co/d/2lmliwv'/>
+            <Link title='The Sparrow by Mary Doria Russell' url='https://a.co/d/2uEkxDl'/>
+            <Link title='Everyone Who Is Gone Is Here by Jonathan Blitzer' url='https://a.co/d/eQCoo7U'/>
+        </List>
+        <br/>
+        <p># Previously Read</p>
+        <List className={`${FiraCode.className} ${styles.list}`} component="ol" marker="decimal">
+            <Link title='Cultish: The Language of Fanaticism by Amanda Montell' url='https://a.co/d/6juJkWG'/>
+            <Link title='Mad Honey by Jodi Picoult' url='https://a.co/d/6FxKcp7'/>
+        </List>
+    </>)
+]), new Node('recipes', 'dir', [
     new Node('Pico-de-Avocado.txt', 'file', <>
         <p># Pico de Avocado</p>
         <p>## Adapted from <a href='https://www.tasteofhome.com/recipes/pico-de-gallo/'>Pico de Gallo [Taste of Home]</a></p>
@@ -250,7 +272,7 @@ export default function Terminal(props) {
     }
 
     const processCommand = (command) => {
-        let commands = command.split(' ')
+        let commands = command.trim().split(' ')
         commands = commands.map((cmd) => {
             if (cmd.startsWith('$')) {
                 if (cmd in variables.current) return variables.current[cmd]
