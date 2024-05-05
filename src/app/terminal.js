@@ -1,7 +1,10 @@
+'use client'
+
 import {useCallback, useRef, useState} from "react";
 import {Box, Input, List, ListItem, Stack, Typography} from "@mui/joy";
 import {Fira_Code} from "next/font/google";
 import styles from './terminal.module.css'
+import {useMediaQuery} from "@mui/material";
 
 const FiraCode = Fira_Code({subsets: ['latin'], weight: ['300', '500', '700']})
 const {List : ImmutableList} = require('immutable')
@@ -120,7 +123,8 @@ const fileSystem = [new Node('files', 'dir', [
 </>)]
 
 export default function Terminal(props) {
-    const [hidden, setHidden] = useState(false)
+    const heightMatches = useMediaQuery('(max-height: 600px)')
+    const [invisible, setInvisible] = useState(false)
     const [command, setCommand] = useState('')
     const [response, setResponse] = useState('')
     const [path, setPath] = useState(ImmutableList())
@@ -268,7 +272,7 @@ export default function Terminal(props) {
 
     const exit = () => {
         setResponse('Goodbye!')
-        setTimeout(() => setHidden(true), 2000)
+        setTimeout(() => setInvisible(true), 2000)
     }
 
     const processCommand = (command) => {
@@ -337,7 +341,7 @@ export default function Terminal(props) {
         }
     }
 
-    return <Stack {...props} className={`${styles.terminal} ${hidden ? styles.hidden : ''}`} sx={{background: 'var(--joy-palette-primary-900)', border: '2px solid black', '&:focus-within:focus:active': {outline: 'none'}, borderRadius: 10, overflowWrap: 'break-word', overflowY: 'hidden'}}>
+    return <Stack {...props} className={`${styles.terminal} ${invisible && styles.invisible} ${heightMatches && styles.hidden}`} sx={{background: 'var(--joy-palette-primary-900)', border: '2px solid black', '&:focus-within:focus:active': {outline: 'none'}, borderRadius: 10, overflowWrap: 'break-word', overflowY: 'hidden'}}>
         <Input spellCheck={false} value={command} onKeyDown={(e) => {
             if (e.key === 'Enter') processCommand(command)
             else if (e.key === 'Tab') {

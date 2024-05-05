@@ -2,8 +2,12 @@
     visibility: visible;
 }
 
-.terminal.hidden {
+.terminal.invisible {
     visibility: hidden;
+}
+
+.terminal.hidden {
+    display: none;
 }
 
 .response {
