@@ -23,6 +23,7 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import {useState} from "react";
 import {KeyboardArrowRight} from "@mui/icons-material";
 import Terminal from "@/app/terminal";
+import {useRouter} from "next/navigation";
 
 function PhotoCard() {
   return <Stack useFlexGap direction='column' sx={{my: 'auto', width: 0.30, height: '100%', flex: '0 0 auto', py: 1}} spacing={2}>
@@ -70,11 +71,13 @@ function Link({title, startDecorator, endDecorator, onClick, disabled = false}) 
 }
 
 function Links(props) {
+  const router = useRouter()
+
   return <Stack {...props} sx={{py: 2}} direction='row' spacing={5} justifyContent='space-between' alignItems='start'>
     <List size='lg' variant='outlined' color='neutral' sx={{borderRadius: 10, '--List-gap': '5px'}}>
       <Link title='Experience' startDecorator={<WorkIcon />} />
       <ListDivider/>
-      <Link title='Projects' startDecorator={<AssignmentIcon />} />
+      <Link title='Projects' startDecorator={<AssignmentIcon />} onClick={() => router.push('/projects')} />
       <ListDivider/>
       <Link title='Blog' startDecorator={<BookIcon />} disabled={true}/>
     </List>
