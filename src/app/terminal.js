@@ -124,7 +124,7 @@ const fileSystem = [new Node('files', 'dir', [
 
 export default function Terminal(props) {
     const theme = useTheme()
-    const heightMatches = useMediaQuery('(max-height: 600px)')
+    const heightMatches = useMediaQuery('(max-height: 520px)')
     const widthMatches = useMediaQuery(theme.breakpoints.down('md'))
     const [invisible, setInvisible] = useState(false)
     const [command, setCommand] = useState('')

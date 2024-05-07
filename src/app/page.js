@@ -85,7 +85,6 @@ function Links(props) {
     <Link key='exp' title='Experience' startDecorator={<WorkIcon />} />,
     <Link key='proj' title='Projects' startDecorator={<AssignmentIcon />} onClick={() => router.push('/projects')} />,
     <Link key='blog' title='Blog' startDecorator={<BookIcon />} disabled={true}/>,
-    <Link key='pubs' title='Publications' startDecorator={<DescriptionIcon />} />,
     <Link key='pgp' title='PGP Key' startDecorator={<KeyIcon />} onClick={() => window.location.href = '/assets/nathanael-gutierrez.asc'}/>
   ]
 
@@ -107,10 +106,10 @@ function Links(props) {
       <Stack {...props} sx={{py: 2, mx: 'auto', width: 1}} direction='row' spacing={5} justifyContent='space-between'
              alignItems='start'>
         <List size='lg' variant='outlined' color='neutral' sx={{borderRadius: 10, '--List-gap': '5px'}}>
-          {addDividers(links.slice(0, links.length / 2 + 1))}
+          {addDividers(links.slice(0, links.length / 2 ))}
         </List>
         <List size='lg' variant='outlined' color='neutral' sx={{borderRadius: 10, '--List-gap': '5px'}}>
-          {addDividers(links.slice(links.length / 2 + 1))}
+          {addDividers(links.slice(links.length / 2))}
         </List>
       </Stack>
 
