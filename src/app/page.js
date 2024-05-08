@@ -92,7 +92,7 @@ function Links(props) {
     const result = []
     for (let i = 0; i < links.length - 1; i++) {
       result.push(links[i])
-      result.push(<ListDivider />)
+      result.push(<ListDivider key={`${links[i].key}-div`} />)
     }
 
     result.push(links[links.length - 1])
