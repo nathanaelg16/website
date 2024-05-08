@@ -5,3 +5,9 @@
 body {
   background: var(--joy-palette-warning-50);
 }
+
+.content {
+  border: 2px solid var(--joy-palette-primary-900);
+  background: var(--joy-palette-primary-50);
+  border-radius: 20px;
+}
