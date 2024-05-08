@@ -20,7 +20,7 @@ import {
     MySQL,
     S3,
     Kotlin,
-    JavaFX, Python, MPI4Py, Bash, Fortran
+    JavaFX, Python, MPI4Py, Bash, Fortran, NumPy, SciPy, Matplotlib, Jupyter, Pandas, PyTorch
 } from "@/app/projects/tools";
 
 const OpenSans = Open_Sans({weight: ['300', '500', '700'], subsets: ['latin']})
@@ -52,7 +52,7 @@ export default function Projects() {
 
     return <Box className={`content`} sx={{m: 2, height: 1, p: 2, position: 'relative'}}>
         <Box sx={{zIndex: 0, position: 'absolute', width: 1}}>
-            <Typography color='primary' textAlign='center' level='h2'>Projects</Typography>
+            <Typography sx={{color: 'black'}} textAlign='center' level='h2'>Projects</Typography>
         </Box>
         <Box sx={{zIndex: 1, position: 'sticky'}}>
             <Button size='lg' variant='plain' startDecorator={<ArrowBackIcon/>} onClick={() => router.back()}>Back</Button>
@@ -62,9 +62,9 @@ export default function Projects() {
             <Divider />
             <Project name='Physics Inventory' link={'https://physicsinventory.app'} logo={physicsInventoryLogo} ratio='1' tools={[<Kotlin key='kt'/>, <Java key='jv'/>, <Spring key='sp' />, <JavaFX key='jx'/>, <JavaScript key='js' />, <ReactTool key='rc' />, <NextJS key='nx'/>, <MongoDB key='mg'/>, <MySQL key='my'/>, <S3 key='s3'/>]} description='The Physics Inventory app began back in 2016 as a desktop application based on Java, the JavaFX GUI framework, and a MySQL database. Since then, the project has expanded into a full stack web application involving a Next.js + React front-end, a Kotlin-based RESTful API service using the Spring framework, S3-compatible document storage, and a MongoDB NoSQL database. The application was built to allow the lab professors and TAs at Andrews University to keep track of the location, maintenance, and purchase information of their inventory. The application features a robust unit conversion engine built from scratch to allow precise tracking of consumables after their use in labs. Users can additionally view a number of reports, including but not limited to: lab set-up and take-down checklists, low stock reports, and requests for maintenance.' />
             <Divider />
-            <Project name='Simulations of Type Iax Supernovae Undergoing Subsonic Burning' link={'https://iopscience.iop.org/article/10.3847/1538-4357/acf658'} logo={iacsLogo} ratio='16/9' tools={[<Python key='py'/>, <MPI4Py key='mp'/>, <Bash key='sh'/>, <Fortran key='ft' />, 'NumPy', 'SciPy', 'Matplotlib', 'Jupyter', 'Pandas']} description='In an Astronomical study of simulations of Type Iax supernovae undergoing subsonic burning, I developed, parallelized, and improved a number of programs used to analyze the results of the simulations. Using a round-robin-esque parallelization algorithm, I was able to achieve a 92.5% improvement in the runtime over the original analysis scripts. The improved scripts allowed the team to analyze terabytes of simulation data much faster than before. The results of the study were published in The Astrophysical Journal.' />
+            <Project name='Simulations of Type Iax Supernovae Undergoing Subsonic Burning' link={'https://iopscience.iop.org/article/10.3847/1538-4357/acf658'} logo={iacsLogo} ratio='16/9' tools={[<Python key='py'/>, <MPI4Py key='mp'/>, <Pandas key='pd'/>, <NumPy key='np' />, <SciPy key='sp'/>, <Matplotlib key='plt'/>, <Jupyter key='jp' />, <Bash key='sh'/>, <Fortran key='ft' />]} description='In an Astronomical study of simulations of Type Iax supernovae undergoing subsonic burning, I developed, parallelized, and improved a number of programs used to analyze the results of the simulations. Using a round-robin-esque parallelization algorithm, I was able to achieve a 92.5% improvement in the runtime over the original analysis scripts. The improved scripts allowed the team to analyze terabytes of simulation data much faster than before. The results of the study were published in The Astrophysical Journal.' />
             <Divider />
-            <Project name='Neuro-Inspired Stability-Plasticity Adaptation for Continual Learning' logo={nispaLogo} ratio='4/3' tools={['Python', 'PyTorch', 'NumPy', 'Pandas', 'Jupyter']} description='The NISPA architecture is a neural network designed for task-incremental learning. The network randomly selects a number of neurons to be preserved (or plasticized), and rewires the network so that only non-plastic neurons are affected by subsequent training. I worked on an approach to improve the network by implementing a selection algorithm that identifies low importance neurons, restores plasticity to them, and rewires them, thereby expanding the capacity of the network between incremental learning phases.' />
+            <Project name='Neuro-Inspired Stability-Plasticity Adaptation for Continual Learning' logo={nispaLogo} ratio='4/3' tools={[<Python key='py'/>, <PyTorch key='pt' />, <Pandas key='pd'/>, <NumPy key='np' />, <Jupyter key='jp' />]} description='The NISPA architecture is a neural network designed for task-incremental learning. The network randomly selects a number of neurons to be preserved (or plasticized), and rewires the network so that only non-plastic neurons are affected by subsequent training. I worked on an approach to improve the network by implementing a selection algorithm that identifies low importance neurons, restores plasticity to them, and rewires them, thereby expanding the capacity of the network between incremental learning phases.' />
         </Stack>
     </Box>
 }

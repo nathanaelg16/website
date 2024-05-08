@@ -31,6 +31,15 @@ export const Python = () => <PythonTool name='Python'/>
 export const MPI4Py = () => <PythonTool name='MPI4Py'/>
 
 
+// DATA SCIENCE
+const DataScienceTool = ({name}) => <Tool name={name} color='#ED9121' textColor='black' />
+export const NumPy = () => <DataScienceTool name='NumPy'/>
+export const SciPy = () => <DataScienceTool name='SciPy'/>
+export const Matplotlib = () => <DataScienceTool name='Matplotlib'/>
+export const Pandas = () => <DataScienceTool name='Pandas'/>
+export const PyTorch = () => <DataScienceTool name='PyTorch' />
+
+
 // DATABASES
 const DatabaseTool = ({name}) =>  <Tool name={name} color='#177245'/>
 export const MongoDB = () => <DatabaseTool name='MongoDB'/>
@@ -41,3 +50,4 @@ export const MySQL = () => <DatabaseTool name='MySQL'/>
 export const S3 = () => <Tool name='S3' color='#8A2BE2' />
 export const Bash = () => <Tool name='Bash' color='#555555' />
 export const Fortran = () => <Tool name='Fortran' color='#536878' />
+export const Jupyter = () => <Tool name='Jupyter' color='#6082B6'/>
