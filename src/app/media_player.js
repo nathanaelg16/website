@@ -1,7 +1,5 @@
 import {CircularProgress, IconButton, Snackbar, Stack, Typography} from "@mui/joy";
-import styles from './media_player.module.css'
 import PauseIcon from '@mui/icons-material/Pause';
-import StopIcon from '@mui/icons-material/Stop';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import CloseIcon from '@mui/icons-material/Close';
 import {useState} from "react";
