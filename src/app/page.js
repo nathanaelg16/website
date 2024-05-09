@@ -20,7 +20,6 @@ import {
 import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';
 import KeyIcon from '@mui/icons-material/Key';
-import DescriptionIcon from '@mui/icons-material/Description';
 import BookIcon from '@mui/icons-material/Book';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import WorkIcon from '@mui/icons-material/Work';
@@ -44,11 +43,12 @@ function PhotoCard({matchesWidth}) {
 }
 
 function Socials(props) {
-  const [showSnackbar, setShowSnackbar] = useState(false)
+  const [snackbar, setSnackbar] = useState({show: false, color: 'success', content: ''})
 
   const copyEmailToClipboard = () => {
     navigator.clipboard.writeText('nathanaelg16@gmail.com')
-    setShowSnackbar(true)
+        .then(() => setSnackbar({show: true, color: 'success', content: 'Email copied to clipboard!'}))
+        .catch(() => setSnackbar({show: true, color: 'danger', content: 'Unable to copy email to clipboard!'}))
   }
 
   return <Box {...props} sx={{mx: 'auto', mt: 'auto', mb: 2}}>
@@ -60,8 +60,8 @@ function Socials(props) {
         <EmailIcon />
       </IconButton>
     </Stack>
-    <Snackbar open={showSnackbar} onClose={() => setShowSnackbar(false)} autoHideDuration={3000} anchorOrigin={{vertical: 'top', horizontal: 'center'}} startDecorator={<ContentCopyIcon />} color='success' variant='soft'>
-      Email copied to clipboard!
+    <Snackbar open={snackbar.show} onClose={() => setSnackbar({show: false, ...snackbar})} autoHideDuration={3000} anchorOrigin={{vertical: 'top', horizontal: 'center'}} startDecorator={<ContentCopyIcon />} color={snackbar.color} variant='soft'>
+      {snackbar.content}
     </Snackbar>
   </Box>
 }
@@ -115,7 +115,7 @@ function Links(props) {
 
 }
 
-function Content({matchesWidth}) {
+function Content() {
   return <Stack sx={{height: 1, flex: '1', px: {lg: 7, md: 4, xs: 0}, pt: 2, width: 1, minWidth: 0}}>
     <Links flex='0' />
     <Terminal flex='1'/>
@@ -133,7 +133,7 @@ export default function Home() {
   return <Box sx={{display: 'flex', width: {md: '100svw', xs: 'unset'}, height: {md: '100svh', xs: 'unset'}, userSelect: 'none', minHeight: '400px'}}>
     <Stack direction={matchesWidth ? 'column' : 'row'} justifyContent='space-between' sx={{mx: 'auto', border: '2px solid var(--joy-palette-primary-900)', background: 'var(--joy-palette-primary-50)', borderRadius: 20, width: {lg: 0.75, xs: 0.90}, height: {md: 0.80, xs: 1}, px: 2, maxHeight: {md: '600px', xs: 'unset'}, my: matchesWidth ? 2 : 'auto', ...sx}}>
       <PhotoCard matchesWidth={matchesWidth}/>
-      <Content matchesWidth={matchesWidth}/>
+      <Content/>
     </Stack>
   </Box>
 }

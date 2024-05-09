@@ -1,6 +1,6 @@
 'use client'
 
-import {AspectRatio, Box, Button, Chip, Grid, Stack, Typography} from "@mui/joy";
+import {AspectRatio, Box, Button, Grid, Stack, Typography} from "@mui/joy";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {useRouter} from "next/navigation";
 import Image from "next/image";
@@ -29,16 +29,15 @@ const Divider = () => <Box sx={{borderBottom: '2px solid', borderImageSource: 'l
 
 function Project({name, logo, description, tools, link = '#', ratio = '16/9'}) {
     return <Grid container spacing={2}>
-        <Grid xs={2} sx={{display: 'flex'}}>
-            <AspectRatio flex ratio={ratio} objectFit='contain' variant='outlined' sx={{mx: 'auto', my: 'auto', borderRadius: 'md'}} maxHeight={150}>
+        <Grid xs={12} md={4} lg={3} sx={{display: 'flex'}}>
+            <AspectRatio flex ratio={ratio} objectFit='contain' variant='outlined' sx={{mx: 'auto', my: 'auto', borderRadius: 'md', height: 1}} maxHeight={150}>
                 <Image alt={name} src={logo} placeholder='blur' width={100} height={100}/>
             </AspectRatio>
         </Grid>
         <Grid xs>
             <Stack justifyContent='space-between' sx={{height: 1}} spacing={2}>
                 <Typography className={OpenSans.className} level='title-lg'>{name} [<Link href={link}>Link</Link>]</Typography>
-                <Stack direction='row' spacing={1}>
-                    {/*{tools.map((tool) => <Chip color='primary' variant='solid' key={tool}>{tool}</Chip>)}*/}
+                <Stack direction='row' spacing={1} flexWrap='wrap' justifyContent='flex-start' alignItems='center' useFlexGap>
                     {tools}
                 </Stack>
                 <Typography className={OpenSans.className}>{description}</Typography>
@@ -57,7 +56,7 @@ export default function Projects() {
         <Box sx={{zIndex: 1, position: 'sticky'}}>
             <Button size='lg' variant='plain' startDecorator={<ArrowBackIcon/>} onClick={() => router.back()}>Back</Button>
         </Box>
-        <Stack sx={{zIndex: 0}} spacing={2}>
+        <Stack sx={{zIndex: 0, p: {xs: 0, md: 2, lg: 5}}} spacing={2}>
             <Project name='BRECKS' logo={brecksLogo} link={'https://brecks.app'} tools={[<Java key='jv'/>, <Spring key='sp'/>, <JavaScript key='js' />, <ReactTool key='rc' />, <NextJS key='nx'/>, <MongoDB key='mg'/>, <MySQL key='my'/>, <S3 key='s3'/>]} description='BRECKS is a full stack web application created to help construction firms manage their daily operations at their job sites. Using BRECKS, firms can track the man-hours spent at their job sites each day, what materials were needed, which visitors were on site, and when the projects were on hold or completed. The BRECKS project uses Next.js + React for the front-end, a Java-based RESTful API service using the Spring framework, both relational and NoSQL databases, and S3-compatible document storage.'/>
             <Divider />
             <Project name='Physics Inventory' link={'https://physicsinventory.app'} logo={physicsInventoryLogo} ratio='1' tools={[<Kotlin key='kt'/>, <Java key='jv'/>, <Spring key='sp' />, <JavaFX key='jx'/>, <JavaScript key='js' />, <ReactTool key='rc' />, <NextJS key='nx'/>, <MongoDB key='mg'/>, <MySQL key='my'/>, <S3 key='s3'/>]} description='The Physics Inventory app began back in 2016 as a desktop application based on Java, the JavaFX GUI framework, and a MySQL database. Since then, the project has expanded into a full stack web application involving a Next.js + React front-end, a Kotlin-based RESTful API service using the Spring framework, S3-compatible document storage, and a MongoDB NoSQL database. The application was built to allow the lab professors and TAs at Andrews University to keep track of the location, maintenance, and purchase information of their inventory. The application features a robust unit conversion engine built from scratch to allow precise tracking of consumables after their use in labs. Users can additionally view a number of reports, including but not limited to: lab set-up and take-down checklists, low stock reports, and requests for maintenance.' />
