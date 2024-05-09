@@ -60,7 +60,7 @@ function Socials(props) {
         <EmailIcon />
       </IconButton>
     </Stack>
-    <Snackbar open={snackbar.show} onClose={() => setSnackbar({show: false, ...snackbar})} autoHideDuration={3000} anchorOrigin={{vertical: 'top', horizontal: 'center'}} startDecorator={<ContentCopyIcon />} color={snackbar.color} variant='soft'>
+    <Snackbar open={snackbar.show} onClose={() => setSnackbar({...snackbar, show: false})} autoHideDuration={3000} anchorOrigin={{vertical: 'top', horizontal: 'center'}} startDecorator={<ContentCopyIcon />} color={snackbar.color} variant='soft'>
       {snackbar.content}
     </Snackbar>
   </Box>
