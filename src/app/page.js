@@ -22,13 +22,13 @@ import EmailIcon from '@mui/icons-material/Email';
 import KeyIcon from '@mui/icons-material/Key';
 import BookIcon from '@mui/icons-material/Book';
 import AssignmentIcon from '@mui/icons-material/Assignment';
-import WorkIcon from '@mui/icons-material/Work';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import {useState} from "react";
+import {useRef, useState} from "react";
 import {KeyboardArrowRight} from "@mui/icons-material";
 import Terminal from "@/app/terminal";
 import {useRouter} from "next/navigation";
 import {useMediaQuery} from "@mui/material";
+import Projects from "@/app/projects";
 
 function PhotoCard({matchesWidth}) {
   return <Stack useFlexGap direction='column' sx={{my: 'auto', width: matchesWidth ? 1 : 0.30, height: matchesWidth ? 0.5 : 1, flex: '0 0 auto', py: 1}} spacing={2}>
@@ -76,16 +76,15 @@ function Link({title, startDecorator, endDecorator, onClick, disabled = false}) 
   </ListItem>
 }
 
-function Links(props) {
+function Links({flex, refs}) {
   const theme = useTheme()
   const widthMatches = useMediaQuery(theme.breakpoints.down('md'))
   const router = useRouter()
 
   const links = [
-    <Link key='exp' title='Experience' startDecorator={<WorkIcon />} />,
-    <Link key='proj' title='Projects' startDecorator={<AssignmentIcon />} onClick={() => router.push('/projects')} />,
+    <Link key='proj' title='Projects' startDecorator={<AssignmentIcon />} onClick={() => refs.projects.current.scrollIntoView({behavior: 'smooth'})} />,
+    <Link key='pgp' title='PGP Key' startDecorator={<KeyIcon />} onClick={() => window.location.href = '/assets/nathanael-gutierrez.asc'}/>,
     <Link key='blog' title='Blog' startDecorator={<BookIcon />} disabled={true}/>,
-    <Link key='pgp' title='PGP Key' startDecorator={<KeyIcon />} onClick={() => window.location.href = '/assets/nathanael-gutierrez.asc'}/>
   ]
 
   const addDividers = (links) => {
@@ -103,23 +102,37 @@ function Links(props) {
   return widthMatches ? <List size='lg' variant='outlined' color='neutral' sx={{borderRadius: 10, '--List-gap': '5px', width: 1, mt: 2}}>
         {addDividers(links)}
       </List> :
-      <Stack {...props} sx={{py: 2, mx: 'auto', width: 1}} direction='row' spacing={5} justifyContent='space-between'
+      <Stack flex={flex} sx={{py: 2, mx: 'auto', width: 1}} direction='row' spacing={5} justifyContent='space-between'
              alignItems='start'>
-        <List size='lg' variant='outlined' color='neutral' sx={{borderRadius: 10, '--List-gap': '5px'}}>
-          {addDividers(links.slice(0, links.length / 2 ))}
-        </List>
-        <List size='lg' variant='outlined' color='neutral' sx={{borderRadius: 10, '--List-gap': '5px'}}>
-          {addDividers(links.slice(links.length / 2))}
-        </List>
+        {links.length > 3 ? <>
+          <List size='lg' variant='outlined' color='neutral' sx={{borderRadius: 10, '--List-gap': '5px'}}>
+            {addDividers(links.slice(0, links.length / 2 ))}
+          </List>
+          <List size='lg' variant='outlined' color='neutral' sx={{borderRadius: 10, '--List-gap': '5px'}}>
+            {addDividers(links.slice(links.length / 2))}
+          </List>
+        </> : <List size='lg' variant='outlined' color='neutral' sx={{borderRadius: 10, '--List-gap': '5px'}}>
+          {addDividers(links)}
+        </List>}
+
       </Stack>
 
 }
 
-function Content() {
+function Content({refs}) {
   return <Stack sx={{height: 1, flex: '1', px: {lg: 7, md: 4, xs: 0}, pt: 2, width: 1, minWidth: 0}}>
-    <Links flex='0' />
+    <Links refs={refs} flex='0' />
     <Terminal flex='1'/>
     <Socials flex='0' />
+  </Stack>
+}
+
+function Main({matchesWidth, refs}) {
+  const sx = matchesWidth ? {overflowY: 'scroll'} : {}
+
+  return <Stack direction={matchesWidth ? 'column' : 'row'} justifyContent='space-between' sx={{mx: 'auto', border: '2px solid var(--joy-palette-primary-900)', background: 'var(--joy-palette-primary-50)', borderRadius: 20, width: {lg: 0.75, xs: 0.90}, height: {md: 0.80, xs: 1}, px: 2, maxHeight: {md: '600px', xs: 'unset'}, my: matchesWidth ? 2 : 'auto', ...sx}}>
+    <PhotoCard matchesWidth={matchesWidth}/>
+    <Content refs={refs}/>
   </Stack>
 }
 
@@ -127,13 +140,14 @@ function Content() {
 export default function Home() {
   const theme = useTheme()
   const matchesWidth = useMediaQuery(theme.breakpoints.down('md'))
+  const projectsRef = useRef()
 
-  const sx = matchesWidth ? {overflowY: 'scroll'} : {}
-
-  return <Box sx={{display: 'flex', width: {md: '100svw', xs: 'unset'}, height: {md: '100svh', xs: 'unset'}, userSelect: 'none', minHeight: '400px'}}>
-    <Stack direction={matchesWidth ? 'column' : 'row'} justifyContent='space-between' sx={{mx: 'auto', border: '2px solid var(--joy-palette-primary-900)', background: 'var(--joy-palette-primary-50)', borderRadius: 20, width: {lg: 0.75, xs: 0.90}, height: {md: 0.80, xs: 1}, px: 2, maxHeight: {md: '600px', xs: 'unset'}, my: matchesWidth ? 2 : 'auto', ...sx}}>
-      <PhotoCard matchesWidth={matchesWidth}/>
-      <Content/>
-    </Stack>
+  return <Box>
+    <Box sx={{display: 'flex', width: {md: '100svw', xs: 'unset'}, height: {md: '100svh', xs: 'unset'}, userSelect: 'none', minHeight: '420px', background: 'var(--joy-palette-warning-50)', pb: {xs: 3, lg: 'unset'}}}>
+      <Main matchesWidth={matchesWidth} refs={{projects: projectsRef}} />
+    </Box>
+    <Box ref={projectsRef} sx={{background: '#b4c0e0', py: {xs: 5, md: 10}}}>
+      <Projects />
+    </Box>
   </Box>
 }
