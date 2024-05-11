@@ -7,7 +7,6 @@ import physicsInventoryLogo from "../../public/assets/Physics-Inventory.png"
 import nispaLogo from "../../public/assets/nispa.png"
 import iacsLogo from "../../public/assets/iacs.png"
 import {Open_Sans} from "next/font/google";
-import Link from "next/link";
 import LanguageIcon from '@mui/icons-material/Language';
 import CodeIcon from '@mui/icons-material/Code';
 import {

@@ -79,7 +79,6 @@ function Link({title, startDecorator, endDecorator, onClick, disabled = false}) 
 function Links({flex, refs}) {
   const theme = useTheme()
   const widthMatches = useMediaQuery(theme.breakpoints.down('md'))
-  const router = useRouter()
 
   const links = [
     <Link key='proj' title='Projects' startDecorator={<AssignmentIcon />} onClick={() => refs.projects.current.scrollIntoView({behavior: 'smooth'})} />,
