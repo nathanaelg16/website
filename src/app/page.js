@@ -11,7 +11,8 @@ import {
   ListItem,
   ListItemButton,
   ListItemContent,
-  ListItemDecorator, Skeleton,
+  ListItemDecorator,
+  Skeleton,
   Snackbar,
   Stack,
   Typography,
@@ -26,7 +27,6 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import {useEffect, useRef, useState} from "react";
 import {KeyboardArrowRight} from "@mui/icons-material";
 import Terminal from "@/app/terminal";
-import {useRouter} from "next/navigation";
 import {useMediaQuery} from "@mui/material";
 import Projects from "@/app/projects";
 
