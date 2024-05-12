@@ -11,7 +11,7 @@ import {
   ListItem,
   ListItemButton,
   ListItemContent,
-  ListItemDecorator,
+  ListItemDecorator, Skeleton,
   Snackbar,
   Stack,
   Typography,
@@ -23,16 +23,16 @@ import KeyIcon from '@mui/icons-material/Key';
 import BookIcon from '@mui/icons-material/Book';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {KeyboardArrowRight} from "@mui/icons-material";
 import Terminal from "@/app/terminal";
 import {useRouter} from "next/navigation";
 import {useMediaQuery} from "@mui/material";
 import Projects from "@/app/projects";
 
-function PhotoCard({matchesWidth}) {
-  return <Stack useFlexGap direction='column' sx={{my: 'auto', width: matchesWidth ? 1 : 0.30, height: matchesWidth ? 0.5 : 1, flex: '0 0 auto', py: 1}} spacing={2}>
-    <AspectRatio flex ratio="16/9" objectFit="cover" sx={{width: 1, height: 1, borderRadius: 5, flexBasis: 200}}>
+function PhotoCard() {
+  return <Stack useFlexGap direction='column' sx={{my: 'auto', width: {xs: 1, md: 0.30}, height: {xs: 'unset', md: 1}, flex: '1', py: 1}} spacing={2}>
+    <AspectRatio flex ratio="16/9" objectFit="cover" sx={{borderRadius: 5, flexBasis: 200}}>
       <Image alt='Nathanael Gutierrez' src={myImage} placeholder="blur" />
     </AspectRatio>
     <Box sx={{borderRadius: 10, background: 'var(--joy-palette-primary-900)', px: 1, py: 0.5}}>
@@ -98,24 +98,19 @@ function Links({flex, refs}) {
     return result
   }
 
-  return widthMatches ? <List size='lg' variant='outlined' color='neutral' sx={{borderRadius: 10, '--List-gap': '5px', width: 1, mt: 2}}>
-        {addDividers(links)}
-      </List> :
-      <Stack flex={flex} sx={{py: 2, mx: 'auto', width: 1}} direction='row' spacing={5} justifyContent='space-between'
+  return  <Stack flex={flex} sx={{py: 2, mx: 'auto', width: 1}} direction='row' spacing={5} justifyContent='space-between'
              alignItems='start'>
-        {links.length > 3 ? <>
+        {widthMatches || links.length <= 3 ? <List size='lg' variant='outlined' color='neutral' sx={{borderRadius: 10, '--List-gap': '5px'}}>
+          {addDividers(links)}
+        </List> : <>
           <List size='lg' variant='outlined' color='neutral' sx={{borderRadius: 10, '--List-gap': '5px'}}>
             {addDividers(links.slice(0, links.length / 2 ))}
           </List>
           <List size='lg' variant='outlined' color='neutral' sx={{borderRadius: 10, '--List-gap': '5px'}}>
             {addDividers(links.slice(links.length / 2))}
           </List>
-        </> : <List size='lg' variant='outlined' color='neutral' sx={{borderRadius: 10, '--List-gap': '5px'}}>
-          {addDividers(links)}
-        </List>}
-
+        </>}
       </Stack>
-
 }
 
 function Content({refs}) {
@@ -126,27 +121,29 @@ function Content({refs}) {
   </Stack>
 }
 
-function Main({matchesWidth, refs}) {
-  const sx = matchesWidth ? {overflowY: 'scroll'} : {}
-
-  return <Stack direction={matchesWidth ? 'column' : 'row'} justifyContent='space-between' sx={{mx: 'auto', border: '2px solid var(--joy-palette-primary-900)', background: 'var(--joy-palette-primary-50)', borderRadius: 20, width: {lg: 0.75, xs: 0.90}, height: {md: 0.80, xs: 1}, px: 2, maxHeight: {md: '600px', xs: 'unset'}, my: matchesWidth ? 2 : 'auto', ...sx}}>
-    <PhotoCard matchesWidth={matchesWidth}/>
+function Main({refs}) {
+  return <Stack direction={{xs: 'column', md: 'row'}} justifyContent='space-between' sx={{mx: 'auto', border: '2px solid var(--joy-palette-primary-900)', background: 'var(--joy-palette-primary-50)', borderRadius: 20, width: {lg: 0.75, xs: 0.90}, height: {md: 0.80, xs: 1}, px: 2, maxHeight: {md: '600px', xs: 'unset'}, my: {xs: 2, md: 'auto'}}}>
+    <PhotoCard />
     <Content refs={refs}/>
   </Stack>
 }
 
-
 export default function Home() {
-  const theme = useTheme()
-  const matchesWidth = useMediaQuery(theme.breakpoints.down('md'))
   const projectsRef = useRef()
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    setLoading(false)
+  }, [setLoading]);
 
   return <Box>
-    <Box sx={{display: 'flex', width: {md: '100svw', xs: 'unset'}, height: {md: '100svh', xs: 'unset'}, userSelect: 'none', minHeight: '420px', background: 'var(--joy-palette-warning-50)', pb: {xs: 3, lg: 'unset'}}}>
-      <Main matchesWidth={matchesWidth} refs={{projects: projectsRef}} />
-    </Box>
-    <Box ref={projectsRef} sx={{background: '#b4c0e0', py: {xs: 5, md: 10}}}>
-      <Projects />
-    </Box>
+    <Skeleton loading={loading}>
+      <Box id='mainBox' sx={{display: 'flex', width: {md: '100svw', xs: 'unset'}, height: {xs: 'auto', md: '100svh'}, userSelect: 'none', minHeight: {xs: '100%', md: '420px'}, background: 'var(--joy-palette-warning-50)', pb: {xs: 3, lg: 'unset'}}}>
+        <Main refs={{projects: projectsRef}} />
+      </Box>
+      <Box ref={projectsRef} sx={{background: '#b4c0e0', py: {xs: 5, md: 10}}}>
+        <Projects />
+      </Box>
+    </Skeleton>
   </Box>
 }
