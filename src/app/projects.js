@@ -6,20 +6,34 @@ import brecksLogo from "../../public/assets/BRECKS.png";
 import physicsInventoryLogo from "../../public/assets/Physics-Inventory.png"
 import nispaLogo from "../../public/assets/nispa.png"
 import iacsLogo from "../../public/assets/iacs.png"
+import kolibriLogo from "../../public/assets/kolibri.png"
 import {Open_Sans} from "next/font/google";
 import LanguageIcon from '@mui/icons-material/Language';
 import CodeIcon from '@mui/icons-material/Code';
 import {
+    Bash,
+    Django,
+    Fortran,
     Java,
+    JavaFX,
     JavaScript,
-    Spring,
-    React as ReactTool,
-    NextJS,
-    MongoDB,
-    MySQL,
-    S3,
+    Jupyter,
     Kotlin,
-    JavaFX, Python, MPI4Py, Bash, Fortran, NumPy, SciPy, Matplotlib, Jupyter, Pandas, PyTorch
+    Matplotlib,
+    MongoDB,
+    MPI4Py,
+    MySQL,
+    NextJS,
+    NumPy,
+    Pandas,
+    Python,
+    PyTorch,
+    React as ReactTool,
+    S3,
+    SciPy,
+    Spring,
+    SQLite,
+    VueJS
 } from "@/app/tools";
 import Divider from "@/app/divider";
 
@@ -53,6 +67,8 @@ export default function Projects() {
     return <Box className={`content`} sx={{mx: 'auto', height: 1, px: 2, pt: 5, width: {lg: 0.75, xs: 0.90}, background: '#ffffff'}}>
         <Typography sx={{color: 'black'}} textAlign='center' level='h2'>Projects</Typography>
         <Stack sx={{p: {xs: 0, md: 2, lg: 5}}} spacing={2}>
+            <Project name='Kolibri' logo={kolibriLogo} ratio='1' links={{url: 'https://learningequality.org/kolibri/', github: 'https://github.com/learningequality/kolibri'}} tools={[<Python key='py'/>, <Django key='dj'/>, <JavaScript key='js' />, <VueJS key='vu' />, <SQLite key='sq' />]} description='Kolibri is an open-source, offline-first platform for teaching and learning with technology without requiring the Internet. The project uses a Vue.js front-end with a Django backend. I have been an avid contributor to this open-source project since May 2024.' />
+            <Divider />
             <Project name='BRECKS' logo={brecksLogo} links={{url: 'https://brecks.app', github: ['https://github.com/nathanaelg16/BRECKS_Client', 'https://github.com/nathanaelg16/BRECKS_API']}} tools={[<Java key='jv'/>, <Spring key='sp'/>, <JavaScript key='js' />, <ReactTool key='rc' />, <NextJS key='nx'/>, <MongoDB key='mg'/>, <MySQL key='my'/>, <S3 key='s3'/>]} description='BRECKS is a full stack web application created to help construction firms manage their daily operations at their job sites. Using BRECKS, firms can track the man-hours spent at their job sites each day, what materials were needed, which visitors were on site, and when the projects were on hold or completed. The BRECKS project uses Next.js + React for the front-end, a Java-based RESTful API service using the Spring framework, both relational and NoSQL databases, and S3-compatible document storage.'/>
             <Divider />
             <Project name='Physics Inventory' links={{url: 'https://physicsinventory.app', github: 'https://github.com/AU-Physics-Inventory'}} logo={physicsInventoryLogo} ratio='1' tools={[<Kotlin key='kt'/>, <Java key='jv'/>, <Spring key='sp' />, <JavaFX key='jx'/>, <JavaScript key='js' />, <ReactTool key='rc' />, <NextJS key='nx'/>, <MongoDB key='mg'/>, <MySQL key='my'/>, <S3 key='s3'/>]} description='The Physics Inventory app began back in 2016 as a desktop application based on Java, the JavaFX GUI framework, and a MySQL database. Since then, the project has expanded into a full stack web application involving a Next.js + React front-end, a Kotlin-based RESTful API service using the Spring framework, S3-compatible document storage, and a MongoDB NoSQL database. The application was built to allow the lab professors and TAs at Andrews University to keep track of the location, maintenance, and purchase information of their inventory. The application features a robust unit conversion engine built from scratch to allow precise tracking of consumables after their use in labs. Users can additionally view a number of reports, including but not limited to: lab set-up and take-down checklists, low stock reports, and requests for maintenance.' />

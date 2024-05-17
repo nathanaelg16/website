@@ -23,12 +23,14 @@ const JavaScriptTool = ({name, url = '#'}) => <Tool name={name} color='#0070BB' 
 export const JavaScript = () => <JavaScriptTool name='JS' url='https://developer.mozilla.org/en-US/docs/Web/javascript'/>
 export const React = () => <JavaScriptTool name='React' url='https://react.dev/'/>
 export const NextJS = () => <JavaScriptTool name='Next.js' url='https://nextjs.org/' />
+export const VueJS = () => <JavaScriptTool name='Vue' url='https://vuejs.org/' />
 
 
 // PYTHON
 const PythonTool = ({name, url = '#'}) => <Tool name={name} color='#FFBF00' textColor='black' url={url}/>
 export const Python = () => <PythonTool name='Python' url='https://www.python.org/'/>
 export const MPI4Py = () => <PythonTool name='MPI4Py' url='https://mpi4py.readthedocs.io/en/stable/index.html'/>
+export const Django = () => <PythonTool name='Django' url='https://www.djangoproject.com/'/>
 
 
 // DATA SCIENCE
@@ -44,6 +46,7 @@ export const PyTorch = () => <DataScienceTool name='PyTorch' url='https://pytorc
 const DatabaseTool = ({name, url}) =>  <Tool name={name} color='#177245' url={url}/>
 export const MongoDB = () => <DatabaseTool name='MongoDB' url='https://mongodb.com/'/>
 export const MySQL = () => <DatabaseTool name='MySQL' url='https://www.mysql.com/'/>
+export const SQLite = () => <DatabaseTool name='SQLite' url='https://www.sqlite.org' />
 
 
 // MISC
