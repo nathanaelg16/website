@@ -102,7 +102,7 @@ const fileSystem = [new Node('files', 'dir', [
             <ListItem>Whisk together the lemon juice, vinegar, oregano, garlic and some salt and pepper in a small bowl. Slowly whisk in the oil until emulsified. Let sit at room temperature while you prepare the salad to allow the flavors to meld.</ListItem>
             <ListItem>Rinse the quinoa in a strainer until the water runs clear. Combine the quinoa, 2 cups water, 1 tsp salt and 1/4 tsp pepper in a small saucepan, bring to a boil and cook until the water is absorbed and the quinoa is tender, about 15 minutes.</ListItem>
             <ListItem>Transfer to a bowl, fluff with a fork and let sit for 5 minutes to cool slightly. Add the tomatoes, olives, green onions, cherry peppers, red onions, cucumbers and dressing and toss to coat. Cover and refrigerate for at least 1 hour and up to 8 hours before serving. The longer it sits the better the flavor.</ListItem>
-            <ListItem> Just before serving, transfer to a platter and sprinkle feta on top.</ListItem>
+            <ListItem>Just before serving, transfer to a platter and sprinkle feta on top.</ListItem>
         </List>
     </>)
 ]), new Node('.secrets', 'dir', [], true), new Node('bookmarks.txt', 'file', <>
