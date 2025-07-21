@@ -17,10 +17,15 @@ export const JavaFX = () => <JavaTool name='JavaFX' url='https://openjfx.io/'/>
 const KotlinTool = ({name, url = '#'}) => <Tool name={name} color='#E23D28' url={url}/>
 export const Kotlin = () => <KotlinTool name='Kotlin' url='https://kotlinlang.org/' />
 
+// GO
+const GoTool = ({name, url = '#'}) => <Tool name={name} url={url} color='#00aed8'/>
+export const Go = () => <GoTool name='Go' url='https://go.dev/' />
+export const Wails = () => <GoTool name='Wails' url='https://wails.io/' />
 
 // JAVASCRIPT
 const JavaScriptTool = ({name, url = '#'}) => <Tool name={name} color='#0070BB' url={url}/>
 export const JavaScript = () => <JavaScriptTool name='JS' url='https://developer.mozilla.org/en-US/docs/Web/javascript'/>
+export const TypeScript = () => <JavaScriptTool name='TS' url='https://www.typescriptlang.org/' />
 export const React = () => <JavaScriptTool name='React' url='https://react.dev/'/>
 export const NextJS = () => <JavaScriptTool name='Next.js' url='https://nextjs.org/' />
 export const VueJS = () => <JavaScriptTool name='Vue' url='https://vuejs.org/' />
