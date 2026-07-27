@@ -59,3 +59,6 @@ export const S3 = () => <Tool name='S3' color='#8A2BE2' url='https://www.digital
 export const Bash = () => <Tool name='Bash' color='#555555' url='https://www.gnu.org/software/bash/'/>
 export const Fortran = () => <Tool name='Fortran' color='#536878' url='https://wg5-fortran.org/'/>
 export const Jupyter = () => <Tool name='Jupyter' color='#6082B6' url='https://jupyter.org/'/>
+export const FastAPI = () => <Tool name='FastAPI' color='#009688' url='https://fastapi.tiangolo.com/'/>
+export const OpenAI = () => <Tool name='OpenAI' color='#000000' url='https://openai.com/'/>
+export const Anthropic = () => <Tool name='Anthropic' color='#CC785C' url='https://www.anthropic.com/'/>
