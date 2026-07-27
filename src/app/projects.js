@@ -2,7 +2,7 @@
 
 import {AspectRatio, Box, Grid, IconButton, Stack, Typography} from "@mui/joy";
 import Image from "next/image";
-import readerLogo from "../../public/assets/reader.png";
+import readerLogo from "../../public/assets/reader.svg";
 import brecksLogo from "../../public/assets/BRECKS.png";
 import physicsInventoryLogo from "../../public/assets/Physics-Inventory.png"
 import nispaLogo from "../../public/assets/nispa.png"
@@ -43,11 +43,11 @@ import Divider from "@/app/divider";
 
 const OpenSans = Open_Sans({weight: ['300', '500', '700'], subsets: ['latin']})
 
-function Project({name, logo, description, tools, links = {url: null, github: null}, ratio = '16/9'}) {
+function Project({name, logo, description, tools, links = {url: null, github: null}, ratio = '16/9', blur = true}) {
     return <Grid container spacing={2}>
         <Grid xs={12} md={4} lg={3} sx={{display: 'flex'}}>
             <AspectRatio flex ratio={ratio} objectFit='contain' variant='outlined' sx={{mx: 'auto', my: 'auto', borderRadius: 'md', height: 1}} maxHeight={150}>
-                <Image alt={name} src={logo} placeholder='blur' width={100} height={100}/>
+                <Image alt={name} src={logo} placeholder={blur ? 'blur' : 'empty'} width={100} height={100}/>
             </AspectRatio>
         </Grid>
         <Grid xs>
@@ -71,7 +71,7 @@ export default function Projects() {
     return <Box className={`content`} sx={{mx: 'auto', height: 1, px: 2, pt: 5, width: {lg: 0.75, xs: 0.90}, background: '#ffffff'}}>
         <Typography sx={{color: 'black'}} textAlign='center' level='h2'>Projects</Typography>
         <Stack sx={{p: {xs: 0, md: 2, lg: 5}}} spacing={2}>
-            <Project name='Reader' logo={readerLogo} ratio='1' links={{url: 'https://reader.nathanaelg.com'}} tools={[<Python key='py'/>, <FastAPI key='fa'/>, <NextJS key='nx'/>, <ReactTool key='rc' />, <OpenAI key='oa'/>, <Anthropic key='an'/>, <S3 key='s3'/>]} description='Reader is a full stack web application that converts web articles into narrated audio. It uses Playwright and Trafilatura for article extraction, Claude Haiku for titling, OpenAI models for speech synthesis and cover image generation, and S3 for delivery. The pipeline is engineered around the model calls, with chunked parallel synthesis within TTS character limits, image generation run concurrently with narration, and content-hash deduplication of resubmitted articles.' />
+            <Project name='Reader' logo={readerLogo} ratio='1' blur={false} links={{url: 'https://reader.nathanaelg.com'}} tools={[<Python key='py'/>, <FastAPI key='fa'/>, <NextJS key='nx'/>, <ReactTool key='rc' />, <OpenAI key='oa'/>, <Anthropic key='an'/>, <S3 key='s3'/>]} description='Reader is a full stack web application that converts web articles into narrated audio. It uses Playwright and Trafilatura for article extraction, Claude Haiku for titling, OpenAI models for speech synthesis and cover image generation, and S3 for delivery. The pipeline is engineered around the model calls, with chunked parallel synthesis within TTS character limits, image generation run concurrently with narration, and content-hash deduplication of resubmitted articles.' />
             <Divider />
             <Project name='Kolibri' logo={kolibriLogo} ratio='1' links={{url: 'https://learningequality.org/kolibri/', github: 'https://github.com/learningequality/kolibri'}} tools={[<Python key='py'/>, <Django key='dj'/>, <JavaScript key='js' />, <VueJS key='vu' />, <SQLite key='sq' />]} description='I am a contributor to Kolibri, an open-source, offline-first platform for teaching and learning with technology without requiring the Internet. The project uses a Vue.js front-end with a Django backend.' />
             <Divider />
