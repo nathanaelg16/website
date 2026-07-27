@@ -133,6 +133,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- marks first mount to end the initial skeleton
     setLoading(false)
   }, [setLoading]);
 

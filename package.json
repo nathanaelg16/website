@@ -6,22 +6,28 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^5.15.15",
-    "@mui/joy": "^5.0.0-beta.36",
-    "@mui/material": "^5.15.15",
-    "immutable": "4.3.9",
-    "next": "15.5.21",
-    "react": "^18",
-    "react-dom": "^18",
-    "sharp": "^0.35.0"
+    "@mui/joy": "^5.0.0-beta.52",
+    "@mui/material": "^5.18.0",
+    "immutable": "5.1.9",
+    "next": "16.2.12",
+    "react": "^19",
+    "react-dom": "^19",
+    "sharp": "^0.35.3"
   },
   "devDependencies": {
-    "eslint": "^9",
-    "eslint-config-next": "16.0.8"
+    "eslint": "^9.39.5",
+    "eslint-config-next": "16.2.12",
+    "typescript": "^5"
+  },
+  "overrides": {
+    "postcss": "^8.5.23",
+    "sharp": "^0.35.3",
+    "minimatch": "^10.2.5"
   }
 }
